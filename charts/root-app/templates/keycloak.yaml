@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/codecentric/helm-charts
+    chart: keycloakx
+    targetRevision: 7.1.5
+    # helm:
+    #   values: |
+    #     pushgateway:
+    #       enabled: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
