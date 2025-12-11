@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: devops-app
+  name: argo-cd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: devops
   source:
     repoURL: https://github.com/rick3032/kc-uplift.git
-    path: charts/devops-app/
+    path: charts/argo-cd
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
